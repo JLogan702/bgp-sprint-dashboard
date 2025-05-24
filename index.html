@@ -2,58 +2,78 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Brand Growth Platform – Project Pulse Check</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
-            margin: 0;
-            padding: 0;
-            text-align: center;
-        }
-        h1 {
-            background-color: #222;
-            color: #fff;
-            padding: 20px;
-            margin: 0;
-        }
-        .light-container {
-            margin: 30px auto;
-        }
-        .stoplight {
-            height: 300px;
-        }
-        .explanation {
-            max-width: 800px;
-            margin: auto;
-            background: white;
-            padding: 20px;
-            border-radius: 12px;
-            box-shadow: 0 0 10px rgba(0,0,0,0.1);
-            font-size: 16px;
-            line-height: 1.6;
-        }
-        .explanation strong {
-            color: #222;
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <title>SITREP Traffic Light</title>
+  <style>
+    body {
+      background: #f0f0f0;
+      text-align: center;
+      font-family: sans-serif;
+    }
+    .traffic-light {
+      width: 100px;
+      margin: 50px auto;
+      background: #222;
+      padding: 20px;
+      border-radius: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      align-items: center;
+    }
+    .light {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background: #444;
+      opacity: 0.3;
+    }
+    .on {
+      opacity: 1;
+    }
+    .blink {
+      animation: blink 1s infinite;
+    }
+    .red { background: red; }
+    .yellow { background: yellow; }
+    .green { background: limegreen; }
+
+    @keyframes blink {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.3; }
+    }
+  </style>
 </head>
 <body>
-    <h1>Brand Growth Platform – Project Pulse Check</h1>
 
-    <div class="light-container">
-        <img src="img/blinking_stoplight_red.gif" alt="Program Status Light" class="stoplight">
-    </div>
+<h1>Brand Growth Platform - Project Pulse Check</h1>
+<div class="traffic-light">
+  <div id="red" class="light red"></div>
+  <div id="yellow" class="light yellow"></div>
+  <div id="green" class="light green"></div>
+</div>
 
-    <div class="explanation">
-        <h2>SITREP Summary</h2>
-        <p><strong>Program Status:</strong> <span style="color:red; text-transform:uppercase;">red</span></p>
-        <p><strong>Sprint Readiness: 22.5%</strong><br>
-        This measures how many stories in the next sprint (Sprint 7) are in "To Do" or "Ready for Development". A low percentage suggests poor sprint readiness and risks to delivery.</p>
+<script>
+  // Your program status score
+  const readinessScore = 22.5; // Replace this with your calculated value
 
-        <p><strong>Backlog Health: 27.3%</strong><br>
-        This measures what percent of backlog items (not in an active sprint) are in "New" or "Grooming". A low score means the team isn’t refining upcoming work sufficiently.</p>
-    </div>
+  const red = document.getElementById('red');
+  const yellow = document.getElementById('yellow');
+  const green = document.getElementById('green');
+
+  // Reset all lights
+  red.classList.remove('on', 'blink');
+  yellow.classList.remove('on', 'blink');
+  green.classList.remove('on', 'blink');
+
+  if (readinessScore < 40) {
+    red.classList.add('on', 'blink');
+  } else if (readinessScore < 70) {
+    yellow.classList.add('on', 'blink');
+  } else {
+    green.classList.add('on', 'blink');
+  }
+</script>
+
 </body>
 </html>
