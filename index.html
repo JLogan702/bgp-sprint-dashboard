@@ -1,86 +1,148 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Brand Growth Platform – Project Pulse Check</title>
-  <style>
-    body {
-      background: #f0f0f0;
-      font-family: sans-serif;
-      text-align: center;
-      padding-top: 50px;
-    }
-    .traffic-light {
-      width: 100px;
-      margin: auto;
-      background: #222;
-      padding: 20px;
-      border-radius: 20px;
-    }
-    .light {
-      width: 60px;
-      height: 60px;
-      margin: 15px auto;
-      background: #444;
-      border-radius: 50%;
-      box-shadow: inset 0 0 10px #000;
-      opacity: 0.2;
-      transition: opacity 0.3s;
-    }
-    .red.on {
-      background: red;
-      opacity: 1;
-    }
-    .yellow.on {
-      background: yellow;
-      opacity: 1;
-    }
-    .green.on {
-      background: limegreen;
-      opacity: 1;
-    }
-    .blinking {
-      animation: blink 1s infinite;
-    }
-
-    @keyframes blink {
-      0%, 100% { opacity: 1; }
-      50% { opacity: 0.3; }
-    }
-  </style>
+    <meta charset="UTF-8">
+    <title>Sprint Dashboard</title>
+    <style>
+        body { font-family: Arial, sans-serif; background: #f4f4f4; margin: 0; padding: 0; }
+        .header { background: #222; color: white; padding: 10px 20px; text-align: center; }
+        .dropdown-wrapper { text-align: center; margin: 20px 0; }
+        select { padding: 10px; font-size: 16px; }
+        .tab-content { display: none; padding: 20px; }
+        .team-block { background: white; border-radius: 10px; padding: 20px; margin: 20px auto; max-width: 900px;
+                       box-shadow: 0 2px 6px rgba(0,0,0,0.1); }
+        .team-title { font-size: 1.4em; margin-bottom: 10px; }
+        .chart-img { display: block; margin: 10px auto; max-width: 100%; }
+        .stoplight-img { display: block; margin: 10px auto; max-height: 150px; }
+        .explanation { font-size: 0.95em; line-height: 1.5; color: #333; margin-top: 10px; }
+        .timestamp { text-align: center; color: #666; margin: 15px 0; }
+    </style>
 </head>
 <body>
-
-<h1>Brand Growth Platform – Project Pulse Check</h1>
-<div class="traffic-light">
-  <div id="red" class="light red"></div>
-  <div id="yellow" class="light yellow"></div>
-  <div id="green" class="light green"></div>
+<div class="header">
+    <h1>Sprint Dashboard - Brand Growth Platform</h1>
 </div>
-<p id="scoreText"></p>
+<div class="dropdown-wrapper">
+    <label for="view-selector"><strong>Select View:</strong></label>
+    <select id="view-selector" onchange="showSection(this.value)">
+        <option value="overview">🧭 SITuation REPort (SITREP)</option>
+        <option value="backlog">📦 Backlog Health</option>
+        <option value="readiness">📈 Sprint Readiness</option>
+    </select>
+</div>
+<div class="timestamp">Last updated: May 23, 2025 at 06:23 PM</div>
 
+<div id="overview" class="tab-content">
+  <div class="team-block">
+    <h2>Brand Growth Platform Project SITuation REPort (SITREP)</h2>
+    <img src="img/stoplight.gif" class="stoplight-img" alt="SITREP Stoplight">
+    <p class="explanation">
+      Program Health Status: <strong style="color:red;">RED</strong><br><br>
+      Sprint Readiness is based on stories in the upcoming sprint that are in “To Do” or “Ready for Development”.<br>
+      Backlog Health is based on stories not assigned to a sprint that are in “New” or “Grooming”.<br><br>
+      Sprint Readiness: <strong>7%</strong><br>
+      Backlog Health: <strong>0%</strong><br><br>
+      Immediate attention is recommended to improve sprint grooming and planning readiness.
+    </p>
+  </div>
+</div>
+<div id="backlog" class="tab-content">
+    <div class="team-block">
+      <h3>Data Science – Backlog Health</h3>
+      <img src="img/stoplight.gif" class="stoplight-img" alt="Data Science – Backlog Health Stoplight">
+      <img src="charts/data_science_backlog_chart.png" class="chart-img" alt="Data Science – Backlog Health Backlog Chart">
+      <p class="explanation">
+        Backlog Health = % of stories not in a sprint that are in “New” or “Grooming” status.<br>
+        Backlog Health Score: <strong>0%</strong>
+      </p>
+    </div>
+    
+    <div class="team-block">
+      <h3>Design – Backlog Health</h3>
+      <img src="img/stoplight.gif" class="stoplight-img" alt="Design – Backlog Health Stoplight">
+      <img src="charts/design_backlog_chart.png" class="chart-img" alt="Design – Backlog Health Backlog Chart">
+      <p class="explanation">
+        Backlog Health = % of stories not in a sprint that are in “New” or “Grooming” status.<br>
+        Backlog Health Score: <strong>0%</strong>
+      </p>
+    </div>
+    
+    <div class="team-block">
+      <h3>Engineering – AI Ops – Backlog Health</h3>
+      <img src="img/stoplight.gif" class="stoplight-img" alt="Engineering – AI Ops – Backlog Health Stoplight">
+      <img src="charts/engineering___ai_ops_backlog_chart.png" class="chart-img" alt="Engineering – AI Ops – Backlog Health Backlog Chart">
+      <p class="explanation">
+        Backlog Health = % of stories not in a sprint that are in “New” or “Grooming” status.<br>
+        Backlog Health Score: <strong>0%</strong>
+      </p>
+    </div>
+    
+    <div class="team-block">
+      <h3>Engineering – Platform – Backlog Health</h3>
+      <img src="img/stoplight.gif" class="stoplight-img" alt="Engineering – Platform – Backlog Health Stoplight">
+      <img src="charts/engineering___platform_backlog_chart.png" class="chart-img" alt="Engineering – Platform – Backlog Health Backlog Chart">
+      <p class="explanation">
+        Backlog Health = % of stories not in a sprint that are in “New” or “Grooming” status.<br>
+        Backlog Health Score: <strong>0%</strong>
+      </p>
+    </div>
+    
+    <div class="team-block">
+      <h3>Engineering – Product – Backlog Health</h3>
+      <img src="img/stoplight.gif" class="stoplight-img" alt="Engineering – Product – Backlog Health Stoplight">
+      <img src="charts/engineering___product_backlog_chart.png" class="chart-img" alt="Engineering – Product – Backlog Health Backlog Chart">
+      <p class="explanation">
+        Backlog Health = % of stories not in a sprint that are in “New” or “Grooming” status.<br>
+        Backlog Health Score: <strong>0%</strong>
+      </p>
+    </div>
+    </div><div id="readiness" class="tab-content">
+    <div class="team-block">
+      <h3>Data Science – Sprint Readiness</h3>
+      <img src="img/stoplight.gif" class="stoplight-img" alt="Data Science – Sprint Readiness Stoplight">
+      <img src="charts/data_science_readiness_chart.png" class="chart-img" alt="Data Science – Sprint Readiness Sprint Readiness Chart">
+      <p class="explanation">
+        Sprint Readiness = % of upcoming sprint stories in “To Do” or “Ready for Development”.<br>
+        Sprint Readiness Score: <strong>7%</strong>
+      </p>
+    </div>
+    
+    <div class="team-block">
+      <h3>Engineering – AI Ops – Sprint Readiness</h3>
+      <img src="img/stoplight.gif" class="stoplight-img" alt="Engineering – AI Ops – Sprint Readiness Stoplight">
+      <img src="charts/engineering___ai_ops_readiness_chart.png" class="chart-img" alt="Engineering – AI Ops – Sprint Readiness Sprint Readiness Chart">
+      <p class="explanation">
+        Sprint Readiness = % of upcoming sprint stories in “To Do” or “Ready for Development”.<br>
+        Sprint Readiness Score: <strong>7%</strong>
+      </p>
+    </div>
+    
+    <div class="team-block">
+      <h3>Engineering – Platform – Sprint Readiness</h3>
+      <img src="img/stoplight.gif" class="stoplight-img" alt="Engineering – Platform – Sprint Readiness Stoplight">
+      <img src="charts/engineering___platform_readiness_chart.png" class="chart-img" alt="Engineering – Platform – Sprint Readiness Sprint Readiness Chart">
+      <p class="explanation">
+        Sprint Readiness = % of upcoming sprint stories in “To Do” or “Ready for Development”.<br>
+        Sprint Readiness Score: <strong>7%</strong>
+      </p>
+    </div>
+    
+    <div class="team-block">
+      <h3>Engineering – Product – Sprint Readiness</h3>
+      <img src="img/stoplight.gif" class="stoplight-img" alt="Engineering – Product – Sprint Readiness Stoplight">
+      <img src="charts/engineering___product_readiness_chart.png" class="chart-img" alt="Engineering – Product – Sprint Readiness Sprint Readiness Chart">
+      <p class="explanation">
+        Sprint Readiness = % of upcoming sprint stories in “To Do” or “Ready for Development”.<br>
+        Sprint Readiness Score: <strong>7%</strong>
+      </p>
+    </div>
+    </div>
 <script>
-fetch('data/sitrep_scores.json')
-  .then(response => response.json())
-  .then(data => {
-    const readinessScore = data.sprint_readiness;
-
-    document.getElementById("scoreText").innerText = `Sprint Readiness Score: ${readinessScore}%`;
-
-    const red = document.getElementById("red");
-    const yellow = document.getElementById("yellow");
-    const green = document.getElementById("green");
-
-    if (readinessScore < 40) {
-      red.classList.add("on", "blinking");
-    } else if (readinessScore < 70) {
-      yellow.classList.add("on", "blinking");
-    } else {
-      green.classList.add("on", "blinking");
-    }
-  });
+function showSection(id) {
+    document.querySelectorAll('.tab-content').forEach(el => el.style.display = 'none');
+    document.getElementById(id).style.display = 'block';
+}
+window.onload = function() {
+    showSection('overview');
+};
 </script>
-
-</body>
-</html>
