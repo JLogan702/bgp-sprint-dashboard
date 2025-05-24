@@ -1,0 +1,38 @@
+
+name: Generate Sprint Dashboard
+
+on:
+  schedule:
+    - cron: '0 12 * * *'  # 8 AM EST (12 PM UTC)
+  workflow_dispatch:
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: 3.10
+
+      - name: Install dependencies
+        run: pip install requests
+
+      - name: Run update_scores.py
+        env:
+          JIRA_BASE_URL: ${{ secrets.JIRA_BASE_URL }}
+          JIRA_EMAIL: ${{ secrets.JIRA_EMAIL }}
+          JIRA_API_TOKEN: ${{ secrets.JIRA_API_TOKEN }}
+        run: python scripts/update_scores.py
+
+      - name: Commit & push if updated
+        run: |
+          git config --global user.name 'GitHub Actions'
+          git config --global user.email 'actions@github.com'
+          git add data/sitrep_scores.json
+          git commit -m "Automated update $(date '+%Y-%m-%d')" || echo "No changes to commit"
+          git push
