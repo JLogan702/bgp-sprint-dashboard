@@ -2,85 +2,58 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Brand Growth Platform – Project Pulse Check</title>
-  <style>
-    body {
-      background: #f0f0f0;
-      font-family: sans-serif;
-      text-align: center;
-      padding-top: 50px;
-    }
-    .traffic-light {
-      width: 100px;
-      margin: auto;
-      background: #222;
-      padding: 20px;
-      border-radius: 20px;
-    }
-    .light {
-      width: 60px;
-      height: 60px;
-      margin: 15px auto;
-      background: #444;
-      border-radius: 50%;
-      box-shadow: inset 0 0 10px #000;
-      opacity: 0.2;
-      transition: opacity 0.3s;
-    }
-    .red.on {
-      background: red;
-      opacity: 1;
-    }
-    .yellow.on {
-      background: yellow;
-      opacity: 1;
-    }
-    .green.on {
-      background: limegreen;
-      opacity: 1;
-    }
-    .blinking {
-      animation: blink 1s infinite;
-    }
-
-    @keyframes blink {
-      0%, 100% { opacity: 1; }
-      50% { opacity: 0.3; }
-    }
-  </style>
+    <meta charset="UTF-8">
+    <title>Brand Growth Platform – Project Pulse Check</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+        }
+        h1 {
+            background-color: #222;
+            color: #fff;
+            padding: 20px;
+            margin: 0;
+        }
+        .light-container {
+            margin: 30px auto;
+        }
+        .stoplight {
+            height: 300px;
+        }
+        .explanation {
+            max-width: 800px;
+            margin: auto;
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            font-size: 16px;
+            line-height: 1.6;
+        }
+        .explanation strong {
+            color: #222;
+        }
+    </style>
 </head>
 <body>
+    <h1>Brand Growth Platform – Project Pulse Check</h1>
 
-<h1>Brand Growth Platform – Project Pulse Check</h1>
-<div class="traffic-light">
-  <div id="red" class="light red"></div>
-  <div id="yellow" class="light yellow"></div>
-  <div id="green" class="light green"></div>
-</div>
-<p id="scoreText"></p>
+    <div class="light-container">
+        <img src="img/blinking_stoplight_red.gif" alt="Program Status Light" class="stoplight">
+    </div>
 
-<script>
-fetch('data/sitrep_scores.json')
-  .then(response => response.json())
-  .then(data => {
-    const readinessScore = data.sprint_readiness;
+    <div class="explanation">
+        <h2>SITREP Summary</h2>
+        <p><strong>Program Status:</strong> <span style="color:red; text-transform:uppercase;">red</span></p>
+        <p><strong>Sprint Readiness: 22.5%</strong><br>
+        This measures how many stories in the next sprint (Sprint 7) are in "To Do" or "Ready for Development". A low percentage suggests poor sprint readiness and risks to delivery.</p>
 
-    document.getElementById("scoreText").innerText = `Sprint Readiness Score: ${readinessScore}%`;
-
-    const red = document.getElementById("red");
-    const yellow = document.getElementById("yellow");
-    const green = document.getElementById("green");
-
-    if (readinessScore < 40) {
-      red.classList.add("on", "blinking");
-    } else if (readinessScore < 70) {
-      yellow.classList.add("on", "blinking");
-    } else {
-      green.classList.add("on", "blinking");
-    }
-  });
-</script>
-
+        <p><strong>Backlog Health: 27.3%</strong><br>
+        This measures what percent of backlog items (not in an active sprint) are in "New" or "Grooming". A low score means the team isn’t refining upcoming work sufficiently.</p>
+    </div>
 </body>
 </html>
