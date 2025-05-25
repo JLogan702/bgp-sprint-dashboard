@@ -1,59 +1,43 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Brand Growth Platform – Project Pulse Check</title>
+    <title>Sprint Dashboard</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
-            margin: 0;
-            padding: 0;
-            text-align: center;
-        }
-        h1 {
-            background-color: #222;
-            color: #fff;
-            padding: 20px;
-            margin: 0;
-        }
-        .light-container {
-            margin: 30px auto;
-        }
-        .stoplight {
-            height: 300px;
-        }
-        .explanation {
-            max-width: 800px;
-            margin: auto;
-            background: white;
-            padding: 20px;
-            border-radius: 12px;
-            box-shadow: 0 0 10px rgba(0,0,0,0.1);
-            font-size: 16px;
-            line-height: 1.6;
-        }
-        .explanation strong {
-            color: #222;
-        }
+        body { font-family: Arial, sans-serif; background: #f4f4f4; margin: 0; padding: 0; }
+        .header { background: #222; color: white; padding: 10px 20px; text-align: center; }
+        .dropdown-wrapper { text-align: center; margin: 20px 0; }
+        select { padding: 10px; font-size: 16px; }
+        .tab-content { display: none; padding: 20px; }
+        .team-block { background: white; border-radius: 10px; padding: 20px; margin: 20px auto; max-width: 900px;
+                       box-shadow: 0 2px 6px rgba(0,0,0,0.1); }
+        .team-title { font-size: 1.4em; margin-bottom: 10px; }
+        .chart-img { display: block; margin: 10px auto; max-width: 100%; }
+        .stoplight-img { display: block; margin: 10px auto; max-height: 150px; }
+        .explanation { font-size: 0.95em; line-height: 1.5; color: #333; margin-top: 10px; }
+        .timestamp { text-align: center; color: #666; margin: 15px 0; }
     </style>
 </head>
 <body>
-    <h1>Brand Growth Platform – Project Pulse Check</h1>
-
-    <div class="light-container">
-        <img src="img/blinking_stoplight_red.gif" alt="Program Status Light" class="stoplight">
-    </div>
-
-    <div class="explanation">
-        <h2>SITREP Summary</h2>
-        <p><strong>Program Status:</strong> <span style="color:red; text-transform:uppercase;">red</span></p>
-        <p><strong>Sprint Readiness: 22.5%</strong><br>
-        This measures how many stories in the next sprint (Sprint 7) are in "To Do" or "Ready for Development". A low percentage suggests poor sprint readiness and risks to delivery.</p>
-
-        <p><strong>Backlog Health: 27.3%</strong><br>
-        This measures what percent of backlog items (not in an active sprint) are in "New" or "Grooming". A low score means the team isn’t refining upcoming work sufficiently.</p>
-    </div>
-</body>
-</html>
+<div class="header">
+    <h1>Sprint Dashboard - Brand Growth Platform</h1>
+</div>
+<div class="dropdown-wrapper">
+    <label for="view-selector"><strong>Select View:</strong></label>
+    <select id="view-selector" onchange="showSection(this.value)">
+        <option value="overview">🧭 SITuation REPort (SITREP)</option>
+        <option value="backlog">📦 Backlog Health</option>
+        <option value="readiness">📈 Sprint Readiness</option>
+    </select>
+</div>
+<div class="timestamp">Last updated: May 23, 2025 at 06:17 PM</div>
+<div id="overview" class="tab-content"><p>SITREP placeholder</p></div><div id="backlog" class="tab-content"><p>Backlog placeholder</p></div><div id="readiness" class="tab-content"><p>Readiness placeholder</p></div>
+<script>
+function showSection(id) {
+    document.querySelectorAll('.tab-content').forEach(el => el.style.display = 'none');
+    document.getElementById(id).style.display = 'block';
+}
+window.onload = function() {
+    showSection('overview');
+};
+</script>
